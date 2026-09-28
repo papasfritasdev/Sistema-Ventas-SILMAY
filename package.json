@@ -1,0 +1,21 @@
+{
+  "name": "deber-seguridad-informatica-mina",
+  "version": "1.0.0",
+  "description": "Sistema de ventas, gastos y auditoria de seguridad informatica para mina de petreos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "seguridad-informatica",
+    "auditoria",
+    "postgresql",
+    "express"
+  ],
+  "author": "Universidad ESPOCH",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

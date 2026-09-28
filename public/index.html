@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mina SILMAY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Encabezado -->
+  <header class="header">
+    <div class="container">
+      <h1>Mina SILMAY</h1>
+      <p>Seguridad Informática - Auditoría de Transacciones y Excepciones</p>
+
+      <!-- Selector de usuario en sesión -->
+      <div class="user-selector">
+        <label for="usuario-activo">Usuario en Sesión:</label>
+        <select id="usuario-activo">
+          <option value="operador">operador</option>
+          <option value="admin">admin</option>
+          <option value="auditor">auditor</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Pestañas -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="tab-ventas">1. Registrar Venta</button>
+      <button class="tab-btn" data-tab="tab-gastos">2. Registrar Gasto</button>
+      <button class="tab-btn" data-tab="tab-resumen">3. Resumen Financiero</button>
+      <button class="tab-btn" data-tab="tab-auditoria">4. Bitácora de Auditoría</button>
+    </nav>
+
+    <!-- Notificación / Alerta -->
+    <div id="alerta-box" class="alerta" style="display: none;"></div>
+
+    <!-- SECCIÓN 1: PESTAÑA VENTAS -->
+    <section id="tab-ventas" class="tab-content active">
+      <div class="card">
+        <h2>Registro de Ventas de Material Pétreo</h2>
+
+        <form id="form-venta">
+          <div class="form-group">
+            <label for="venta-material">Material Pétreo:</label>
+            <select id="venta-material" required>
+              <option value="Arena">Arena</option>
+              <option value="Ripio">Ripio</option>
+              <option value="Piedra">Piedra</option>
+              <option value="Coco">Coco</option>
+              <option value="Subbase">Subbase</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="venta-cantidad">Cantidad (m³):</label>
+            <input type="number" id="venta-cantidad" step="0.01" required>
+          </div>
+
+          <div class="form-group">
+            <label for="venta-total">Total ($):</label>
+            <input type="number" id="venta-total" step="0.01" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar Venta</button>
+            <!--
+            <button type="button" id="btn-demo-error-venta" class="btn btn-warning">
+              Simular Error (m³ Negativo)
+            </button>
+            -->
+
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PESTAÑA GASTOS -->
+    <section id="tab-gastos" class="tab-content">
+      <div class="card">
+        <h2>Registro de Gastos Operativos</h2>
+
+        <form id="form-gasto">
+          <div class="form-group">
+            <label for="gasto-descripcion">Descripción del Gasto:</label>
+            <input type="text" id="gasto-descripcion" required>
+          </div>
+
+          <div class="form-group">
+            <label for="gasto-monto">Monto ($):</label>
+            <input type="number" id="gasto-monto" step="0.01" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar Gasto</button>
+            <!--
+            <button type="button" id="btn-demo-error-gasto" class="btn btn-warning">
+              Simular Error (Monto Negativo)
+            </button>
+            -->
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: PESTAÑA RESUMEN -->
+    <section id="tab-resumen" class="tab-content">
+      <div class="card">
+        <h2>Resumen Financiero</h2>
+
+        <div class="resumen-grid">
+          <div class="resumen-item item-ventas">
+            <h3>Total Ventas</h3>
+            <p id="resumen-ventas">$0.00</p>
+          </div>
+          <div class="resumen-item item-gastos">
+            <h3>Total Gastos</h3>
+            <p id="resumen-gastos">$0.00</p>
+          </div>
+          <div class="resumen-item item-saldo">
+            <h3>Saldo Neto</h3>
+            <p id="resumen-saldo">$0.00</p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="btn-recargar-resumen" class="btn">Actualizar Resumen</button>
+        </div>
+      </div>
+
+      <!-- Tabla de Ventas Registradas con Categorización / Filtros -->
+      <div class="card">
+        <div class="auditoria-header">
+          <h2>Historial de Ventas</h2>
+          <button id="btn-recargar-ventas" class="btn">Refrescar Ventas</button>
+        </div>
+
+        <!-- Filtros por Año, Mes y Día -->
+        <div class="filtros-ventas">
+          <div class="filtro-item">
+            <label for="filtro-anio">Año:</label>
+            <select id="filtro-anio">
+              <option value="">Todos</option>
+            </select>
+          </div>
+
+          <div class="filtro-item">
+            <label for="filtro-mes">Mes:</label>
+            <select id="filtro-mes">
+              <option value="">Todos</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+
+          <div class="filtro-item">
+            <label for="filtro-dia">Día:</label>
+            <select id="filtro-dia">
+              <option value="">Todos</option>
+            </select>
+          </div>
+
+          <button id="btn-limpiar-filtros" class="btn">Limpiar Filtros</button>
+        </div>
+
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Material</th>
+                <th>Cantidad (m³)</th>
+                <th>Total ($)</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-ventas">
+              <tr>
+                <td colspan="6" class="text-center">Cargando ventas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: PESTAÑA AUDITORÍA -->
+    <section id="tab-auditoria" class="tab-content">
+      <div class="card">
+        <div class="auditoria-header">
+          <h2>Módulo de Auditoría</h2>
+          <button id="btn-recargar-auditoria" class="btn">Refrescar Tablas</button>
+        </div>
+        <p>
+          Tablas del esquema auditoria: movimientos aprobados y errores capturados.
+        </p>
+
+        <!-- Tabla 1: Logs de Movimientos (TRY) -->
+        <div class="tabla-contenedor">
+          <h3 class="titulo-exito">1. Tabla de Movimientos Exitosos (Bloque TRY: auditoria.logs_movimientos)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acción Realizada</th>
+                <th>IP Origen</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-movimientos">
+              <tr>
+                <td colspan="6" class="text-center">Cargando registros...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tabla 2: Logs de Errores (CATCH) -->
+        <div class="tabla-contenedor">
+          <h3 class="titulo-error">2. Tabla de Errores e Incidentes (Bloque CATCH: auditoria.logs_errores)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acción Realizada</th>
+                <th>Mensaje de Error (PostgreSQL)</th>
+                <th>IP Origen</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-errores">
+              <tr>
+                <td colspan="7" class="text-center">Cargando registros...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

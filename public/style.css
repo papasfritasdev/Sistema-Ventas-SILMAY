@@ -1,0 +1,277 @@
+/* =============================================================================
+   ESTILOS MINA SILMAY
+   Estructura limpia con bordes y tipografía estándar del sistema.
+   ============================================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: white;
+  color: black;
+  line-height: 1.4;
+  padding: 15px;
+}
+
+.container {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* ENCABEZADO */
+.header {
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: rgb(76, 0, 255);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.header p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.user-selector {
+  font-size: 0.9rem;
+}
+
+.user-selector select {
+  padding: 4px 6px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+}
+
+/* PESTAÑAS (TABS) */
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.tab-btn {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: yellow;
+}
+
+/* CONTENIDO DE PESTAÑAS */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* CONTENEDORES / CAJAS CON BORDE */
+.card {
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.card>p {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+/* FORMULARIOS */
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* BOTONES */
+.btn {
+  padding: 7px 14px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: rgb(7, 255, 7);
+}
+
+.btn-warning {
+  background-color: red;
+}
+
+/* ALERTAS */
+.alerta {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  font-size: 0.9rem;
+}
+
+.alerta-exito {
+  border-color: green;
+  color: green;
+}
+
+.alerta-error {
+  border-color: red;
+  color: red;
+}
+
+/* RESUMEN FINANCIERO */
+.resumen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.resumen-item {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: center;
+  background-color: white;
+}
+
+.resumen-item h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.resumen-item p {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.item-ventas {
+  border-color: green;
+  color: green;
+}
+
+.item-gastos {
+  border-color: red;
+  color: red;
+}
+
+.item-saldo {
+  border-color: blue;
+  color: blue;
+}
+
+/* FILTROS DE VENTAS */
+.filtros-ventas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filtro-item label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.filtro-item select {
+  padding: 4px 6px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  font-size: 0.9rem;
+}
+
+/* AUDITORÍA */
+.auditoria-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.titulo-exito {
+  color: green;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.titulo-error {
+  color: red;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+.tabla-contenedor+.tabla-contenedor {
+  margin-top: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
